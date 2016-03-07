@@ -1,7 +1,7 @@
 /**
  * this class define the component of an othello game
  * 
- * @author Laban Benoît - Veyre Aurélien
+ * @author Laban Benoit - Veyre Aurelien
  *
  */
 public class OthelloGame 
