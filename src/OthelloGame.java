@@ -1,10 +1,29 @@
-
-public class OthelloGame {
+/**
+ * this class define the component of an othello game
+ * 
+ * @author Laban Benoît - Veyre Aurélien
+ *
+ */
+public class OthelloGame 
+{
 	
-	public String play(){
-		/**
-		 * renvoyer la partie commence --> terminé
-		 */
+	
+	/**
+	 * this construtor create a new game with the initial parameters 
+	 * (the board is ready to play)
+	 */
+	public OthelloGame()
+	{
+		this.board = new Board();
 	}
+	
+	/**
+	 * the method play explain the progress of the game
+	 */
+	public void play()
+	{
+		
+	}
+	
 	
 }
