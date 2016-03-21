@@ -19,7 +19,7 @@ public class OthelloGame
 		this.player2 = new Player();
 		
 	}
-	// TODO update comment
+	
 	/**
 	 * play the game:
 	 * 
