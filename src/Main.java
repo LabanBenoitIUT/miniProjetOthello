@@ -1,5 +1,3 @@
-//TODO update README.md (what/who)
-
 /**
  * application who execute an othello game
  * @author labanb

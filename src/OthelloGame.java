@@ -34,7 +34,7 @@ public class OthelloGame
 		String str2 = sc.nextLine();
 		this.player2 = new Player(str2);	
 	}
-	// TODO update comment
+	
 	/**
 	 * play the game:
 	 * 
