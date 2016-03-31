@@ -11,7 +11,7 @@ public class OthelloGame
 	/**
 	 * board of othello game
 	 */
-	private final Board board[][];
+	private final Board board;
 	/**
 	 * first player
 	 */
@@ -25,7 +25,7 @@ public class OthelloGame
 	 */
 	public OthelloGame()
 	{
-		this.board = new Board[8][8];
+		this.board = new Board();
 		Scanner sc = new Scanner(System.in);
 		System.out.println("enter the first player's name" );
 		String str1 = sc.nextLine();
@@ -53,7 +53,7 @@ public class OthelloGame
 	 */
 	public void play()
 	{
-		while (EmptyBoard())
+		while (EmptyBoard()== true)
 		{
 			while
 		}
