@@ -10,6 +10,7 @@ public class Player
 	 */
 	private final String name;
 
+	// TODO fix comment (parameter doc is missing)
 	/**
 	 * create a player with name in parameter
 	 */
