@@ -10,9 +10,9 @@ public class Player
 	 */
 	private final String name;
 
-	// TODO fix comment (parameter doc is missing)
 	/**
 	 * create a player with name in parameter
+	 * @param name : is the name of the player 
 	 */
 	public Player(String name)
 	{

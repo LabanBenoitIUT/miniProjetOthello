@@ -10,7 +10,7 @@ public class Main {
 	 */
 	public static void main(String[] args) 
 	{
-		new OthelloGame().play();
+		new OthelloGame(args[0], args[1]).play();
 		System.out.println();
 		
 	}

@@ -5,37 +5,35 @@
  */
 public class Pawn
 {
-	// TODO rename field
+
 	/**
 	 * number of the owner
 	 */
-	private int equipe;
+	private int team;
 	
-	// TODO fix comment (general description is missing)
 	/**
-	 * 
+	 * give a team number to the pawn
 	 * @param numPlayer is the number of the owner
 	 */
 	public Pawn(int numPlayer)
 	{
-		this.equipe = numPlayer;
+		this.team = numPlayer;
 	}
-	// TODO rename method
+
 	/**
 	 * change the owner of the pawn
 	 * @param pawn who must change of owner
 	 */
-	public void switchEquipe(Pawn pawn)
+	public void switchTeam(Pawn pawn)
 	{
-		if (this.equipe == 1)
-			this.equipe = 2;
-			else this.equipe = 1;
+		if (this.team == 1)
+			this.team = 2;
+			else this.team = 1;
 	}
 	
-	// TODO fix comment
 	/**
-	 * 
-	 * @return
+	 * check if the pawn can be framed 
+	 * @return true if he can be framed and else false
 	 */
 	public boolean pawnCanBeFramed()
 	{
