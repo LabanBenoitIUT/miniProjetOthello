@@ -12,10 +12,6 @@ public class Board
 	Pawn[][] board;
 	
 	/**
-	 * true if the board is not full and else false
-	 */
-	private boolean isNotFull;
-	/**
 	 * create a table of pawns with the initial pawn 
 	 * @return board with the initials pawns 
 	 */
@@ -32,7 +28,7 @@ public class Board
 	 * @param board 
 	 * @return true if the board is not full and else false 
 	 */
-	public boolean EmptyBoard(Pawn[][] board)
+	public boolean IsEmpty(Pawn[][] board)
 	{
 		for (int i = 0; i < 8; i++)
 		{
@@ -44,17 +40,5 @@ public class Board
 		}
 		return false;
 	}
-	public boolean isNotFull()
-	{
-		return isNotFull;
-	}
-	/**
-	 * update the value of isNotFull
-	 * @param isNotFull  
-	 */
-	public void setNotFull(boolean isNotFull)
-	{
-		this.isNotFull = EmptyBoard(board) ;
-	}
-	
+
 }

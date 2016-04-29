@@ -33,14 +33,26 @@ public class OthelloGame
 	{
 		this.board = new Board();
 		this.player1 = new Player(nameP1);
+		this.player1.wherePlay[0] = new Coordinate(4,2);
+		this.player1.wherePlay[1] = new Coordinate(5,3);
+		this.player1.wherePlay[2] = new Coordinate(3,5);
+		this.player1.wherePlay[3] = new Coordinate(2,4);
+		this.player1.HisPawn[0] = new Coordinate(3,3);
+		this.player1.HisPawn[1] = new Coordinate(4,4);
 		this.player2 = new Player(nameP2);
+		this.player2.wherePlay[0] = new Coordinate(2,3);
+		this.player2.wherePlay[1] = new Coordinate(3,2);
+		this.player2.wherePlay[2] = new Coordinate(4,5);
+		this.player2.wherePlay[3] = new Coordinate(5,4);
+		this.player2.HisPawn[0] = new Coordinate(3,4);
+		this.player2.HisPawn[1] = new Coordinate(4,3);
 	}
 
 	/**
 	 * play the game:
 	 * 
 	 * current player is player1
-	 * while <board isn't full>
+	 * while <board isn't full or a player can play>
 	 *  while <one pawn of opponent can be framed>
 	 *   <ask to current player where to play>
 	 * 	 if<this location is right>
@@ -54,10 +66,12 @@ public class OthelloGame
 	 */
 	public void play()
 	{
-		while (EmptyBoard(this.board)== true)
+		while(this.board.IsEmpty(this.board.board) && this.player1.getHadPlay() || this.player2.getHadPlay())
 		{
-			while
+			
+			while()
 		}
 	}
 
+	
 }

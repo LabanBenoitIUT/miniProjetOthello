@@ -1,6 +1,6 @@
 /**
  * application who execute an othello game
- * @author labanb
+ * @author benoit laban - aurelien veyre
  *
  */
 public class Main {
