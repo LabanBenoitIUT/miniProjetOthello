@@ -11,29 +11,33 @@ public class Player
 	private final String name;
 	
 	/**
+	 * 
+	 */
+	private int team;
+	
+	/**
 	 * indicate if the player had play the last round
 	 */
 	private boolean HadPlay;
 	
 	/**
-	 * position where the player can play
-	 */
-	Coordinate[]wherePlay;
-	
-	/**
-	 * position of all pawn of player
-	 */
-	Coordinate[]HisPawn;
-	
-	/**
 	 * create a player with name in parameter
 	 * @param name : is the name of the player 
 	 */
-	public Player(String name)
+	public Player(String name, int team)
 	{
+		this.team = team;
 		this.name = name;
-		this.wherePlay[64] = null;
-		this.HisPawn[64] = null;
+		this.HadPlay = true; 
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public String getName()
+	{
+		return name;
 	}
 
 	/**
@@ -42,7 +46,7 @@ public class Player
 	 */
 	public boolean getHadPlay()
 	{
-		return HadPlay;
+		return this.HadPlay;
 	}
 
 	/**
@@ -51,7 +55,7 @@ public class Player
 	 */
 	public void setHadPlay(boolean hadPlay)
 	{
-		HadPlay = hadPlay;
+		this.HadPlay = hadPlay;
 	}
 
 }
