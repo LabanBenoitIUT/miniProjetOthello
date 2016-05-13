@@ -30,10 +30,9 @@ public class Board
 	}
 	/**
 	 * check if the board is empty
-	 * @param board : the board
 	 * @return true if the board is not full and else false 
 	 */
-	public boolean IsEmpty(int[][] board)
+	public boolean IsEmpty()
 	{
 		for (int i = 0; i < 8; i++)
 		{
@@ -59,13 +58,143 @@ public class Board
 	
 	/**
 	 * check if a pawn can be framed by opponents pawns
-	 * @param team : the team of the current player
+	 * @param p : a pawn
+	 * @param team : the team of the player
 	 * @return true if it can be framed and else false
 	 */
-	public boolean pawnCanBeFramed(int team)
+	public boolean pawnCanFramed(int p, Player player, int i, int j)
 	{
+		int k=0;
+		int x=i;
+		int y=j;
+		int team=player.getTeam();
+		int t2=team;
 		
-		return true;
+		while(x<8 && t2!=team)
+		{
+			x++;
+			t2 = this.board[x][j];
+		}
+		if(t2 == 0)
+		{
+			player.WherePlay[k].setX(x);
+			player.WherePlay[k].setY(j);
+			k++;
+		}
+		else
+		{
+			t2=team;
+			x=i;
+			while(x>=0 && t2!=team)
+			{
+				x--;
+				t2 = this.board[x][j];
+			}
+			if(t2 == 0)
+			{
+				player.WherePlay[k].setX(x);
+				player.WherePlay[k].setY(j);
+				k++;
+			}
+		}
+		
+		t2=team;
+		while(y<8 && t2!=team)
+		{
+			y++;
+			t2 = this.board[i][y];
+		}
+		if(t2 == 0)
+		{
+			player.WherePlay[k].setX(i);
+			player.WherePlay[k].setY(y);
+			k++;
+		}
+		else
+		{
+			t2=team;
+			y=j;
+			while(y>=0 && t2!=team)
+			{
+				y--;
+				t2 = this.board[i][y];
+			}
+			if(t2 == 0)
+			{
+				player.WherePlay[k].setX(i);
+				player.WherePlay[k].setY(y);
+				k++;
+			}
+		}
+		
+		x=i;
+		y=j;
+		t2=team;
+		while(x<8 && y<8 && t2!=team)
+		{
+			x++;
+			y++;
+			t2 = this.board[x][y];
+		}
+		if(t2 == 0)
+		{
+			player.WherePlay[k].setX(x);
+			player.WherePlay[k].setY(y);
+			k++;
+		}
+		
+		x=i;
+		y=j;
+		t2=team;
+		while(x>=0 && y>=0 && t2!=team)
+		{
+			x--;
+			y--;
+			t2 = this.board[x][y];
+		}
+		if(t2 == 0)
+		{
+			player.WherePlay[k].setX(x);
+			player.WherePlay[k].setY(y);
+			k++;
+		}
+		
+		x=i;
+		y=j;
+		t2=team;
+		while(x>=0 && y<8 && t2!=team)
+		{
+			x--;
+			y++;
+			t2 = this.board[x][y];
+		}
+		if(t2 == 0)
+		{
+			player.WherePlay[k].setX(x);
+			player.WherePlay[k].setY(y);
+			k++;
+		}
+		
+		x=i;
+		y=j;
+		t2=team;
+		while(x<8 && y>=0 && t2!=team)
+		{
+			x++;
+			y--;
+			t2 = this.board[x][y];
+		}
+		if(t2 == 0)
+		{
+			player.WherePlay[k].setX(x);
+			player.WherePlay[k].setY(y);
+			k++;
+		}
+		
+		if(player.WherePlay[0] != null)
+			return true;
+		else
+			return false;
 	}
 	
 	/**

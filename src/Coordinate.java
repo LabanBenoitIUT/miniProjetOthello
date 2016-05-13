@@ -15,6 +15,11 @@ public class Coordinate
 	 */
 	private int y;
 	
+	/**
+	 * 
+	 * @param x
+	 * @param y
+	 */
 	public Coordinate(int x, int y)
 	{
 		this.x = x;

@@ -26,17 +26,17 @@ public class OthelloGame
 	/**
 	 * team's number of current player
 	 */
-	private int currentPlayer;
+	private Player currentPlayer;
 	
 	/**
 	 * Change the current player
 	 */
 	public void ChangeCurrentPlayer()
 	{
-		if(this.currentPlayer == 1)
-			this.currentPlayer = 2;
+		if(this.currentPlayer == this.player1)
+			this.currentPlayer = this.player2;
 		else
-			this.currentPlayer = 1;
+			this.currentPlayer = this.player1;
 	}
 
 	/**
@@ -45,8 +45,30 @@ public class OthelloGame
 	 */
 	public boolean gameIsNotOver()
 	{
-		
-		return true;
+		if(this.board.IsEmpty())
+		{
+			if(CanPlay(this.player1)||CanPlay(this.player2))
+				return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * 
+	 * @param player
+	 * @return
+	 */
+	public boolean CanPlay(Player player)
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			for (int j = 0; j < 8; j++)
+			{
+				if(this.board.pawnCanFramed(this.board.board[i][j], player, i, j))
+					return true;
+			}
+		}
+		return false;
 	}
 	
 	/**
@@ -79,7 +101,7 @@ public class OthelloGame
 	 * 
 	 * current player is player1
 	 * while <game is not over>
-	 *  while <one pawn of opponent can be framed>
+	 *  while <Canplay>
 	 *   <ask to current player where to play>
 	 * 	 if<this location is right>
 	 *    <a pawn of the current player is put>
@@ -92,10 +114,10 @@ public class OthelloGame
 	 */
 	public void play()
 	{
-		this.currentPlayer = 1;
+		this.currentPlayer = this.player1;
 		while(gameIsNotOver())
 		{
-			while(this.board.pawnCanBeFramed(this.currentPlayer))
+			while(CanPlay(this.currentPlayer))
 			{
 				/* ask to current player where to play*/
 				while(this.board.locationIsRight()  == false)

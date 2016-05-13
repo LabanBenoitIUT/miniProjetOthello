@@ -16,10 +16,10 @@ public class Player
 	private int team;
 	
 	/**
-	 * indicate if the player had play the last round
+	 * 
 	 */
-	private boolean HadPlay;
-	
+	Coordinate[] WherePlay = new Coordinate[60];
+
 	/**
 	 * create a player with name in parameter
 	 * @param name : is the name of the player 
@@ -28,7 +28,10 @@ public class Player
 	{
 		this.team = team;
 		this.name = name;
-		this.HadPlay = true; 
+		for (int i = 0; i < 61; i++)
+		{
+			this.WherePlay[i] = null;
+		}
 	}
 
 	/**
@@ -37,26 +40,17 @@ public class Player
 	 */
 	public String getName()
 	{
-		return name;
+		return this.name;
 	}
 
 	/**
-	 * get if the player had play the last round
 	 * @return
 	 */
-	public boolean getHadPlay()
+	public int getTeam()
 	{
-		return this.HadPlay;
+		return this.team;
 	}
-
-	/**
-	 * update the value of HadPlay
-	 * @param hadPlay
-	 */
-	public void setHadPlay(boolean hadPlay)
-	{
-		this.HadPlay = hadPlay;
-	}
+	
 
 }
 
