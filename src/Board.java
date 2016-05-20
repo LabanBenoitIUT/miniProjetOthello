@@ -5,17 +5,27 @@
  *
  */
 public class Board
-{	
+{
+	/**
+	 * default value of the length of the board
+	 */
+	private final int DEFAULT_LENGTH=8;
+	
+	/**
+	 * default value of the longer of the board
+	 */
+	private final int DEFAULT_LONG=8;
 	/**
 	 * a board of pawn 
 	 */
-	int[][] board = new int[8][8];
+	private int[][] board ;
 	
 	/**
 	 * create a table of pawns with the initial pawn 
 	 */
 	public Board()
 	{
+		this.board = new int[this.DEFAULT_LENGTH][this.DEFAULT_LONG];
 		for (int i = 0; i < 8; i++)
 		{
 			for (int j = 0; j < 8; j++)
@@ -59,10 +69,12 @@ public class Board
 	/**
 	 * check if a pawn can be framed by opponents pawns
 	 * @param p : a pawn
-	 * @param team : the team of the player
+	 * @param player 
+	 * @param i 
+	 * @param j 
 	 * @return true if it can be framed and else false
 	 */
-	public boolean pawnCanFramed(int p, Player player, int i, int j)
+	public boolean pawnCanFramed(int[][] p, Player player, int i, int j)
 	{
 		int k=0;
 		int x=i;
@@ -199,12 +211,20 @@ public class Board
 	
 	/**
 	 * 
-	 * @return
+	 * @param c the coordinate where the player want play
+	 * @param player the current player
+	 * @return true if the location is on the possible location and else return false
 	 */
-	public boolean locationIsRight()
+	public boolean locationIsRight(Coordinate c, Player player)
 	{
-		
-		return true;
+		for(int i=0; i<61; i++)
+		{
+			if(c.getX()==player.WherePlay[i].getX() && c.getY()==player.WherePlay[i].getY())
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	/**
@@ -236,6 +256,32 @@ public class Board
 		}
 		return results;		
 	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public int[][] getBoard()
+	{
+		return this.board;
+	}
+	/**
+	 * @return the dEFAULT_LENGTH
+	 */
+	public int getDEFAULT_LENGTH()
+	{
+		return this.DEFAULT_LENGTH;
+	}
+	/**
+	 * @return the dEFAULT_LONG
+	 */
+	public int getDEFAULT_LONG()
+	{
+		return this.DEFAULT_LONG;
+	}
+	
+	
+	
 
 
 }

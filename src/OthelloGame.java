@@ -54,9 +54,9 @@ public class OthelloGame
 	}
 	
 	/**
-	 * 
-	 * @param player
-	 * @return
+	 * check if the player can play
+	 * @param player current player
+	 * @return true if the player can play
 	 */
 	public boolean CanPlay(Player player)
 	{
@@ -64,7 +64,7 @@ public class OthelloGame
 		{
 			for (int j = 0; j < 8; j++)
 			{
-				if(this.board.pawnCanFramed(this.board.board[i][j], player, i, j))
+				if(this.board.pawnCanFramed(this.board.getBoard(), player, i, j))
 					return true;
 			}
 		}
@@ -111,27 +111,29 @@ public class OthelloGame
 	 *   current player changes
 	 *  current player changes
 	 * game over
+	 * @throws CoordinateIsntInTheBoardException 
 	 */
-	public void play()
+	public void play() throws CoordinateIsntInTheBoardException
 	{
 		this.currentPlayer = this.player1;
 		while(gameIsNotOver())
 		{
 			while(CanPlay(this.currentPlayer))
 			{
-				/* ask to current player where to play*/
-				while(this.board.locationIsRight()  == false)
+				Coordinate c = this.currentPlayer.askWherePlay();
+				while(this.board.locationIsRight(c, this.currentPlayer)  == false)
 				{
-					/* ask to current player where to play*/
+					c = this.currentPlayer.askWherePlay();
 				}
-				/*this.board[i][j] = this.currentPlayer;*/
+				this.board.getBoard()[c.getX()][c.getY()] = this.currentPlayer.getTeam();
 				/*change color*/
-				ChangeCurrentPlayer();
-			}
+				ChangeCurrentPlayer();			}
 			ChangeCurrentPlayer();
 		}
 		this.board.TheWinnerIs();
 	}
+
+	
 
 	
 }
