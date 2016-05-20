@@ -30,7 +30,7 @@ public class Player
 		this.name = name;
 		for (int i = 0; i < 61; i++)
 		{
-			this.WherePlay[i] = null;
+			this.WherePlay[i] = null; 
 		}
 	}
 
