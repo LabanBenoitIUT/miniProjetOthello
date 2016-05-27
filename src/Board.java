@@ -9,12 +9,12 @@ public class Board
 	/**
 	 * default value of the length of the board
 	 */
-	private final int DEFAULT_LENGTH=8;
+	public final int DEFAULT_LENGTH=8;
 	
 	/**
 	 * default value of the longer of the board
 	 */
-	private final int DEFAULT_LONG=8;
+	public final int DEFAULT_LONG=8;
 	/**
 	 * a board of pawn 
 	 */
@@ -26,9 +26,9 @@ public class Board
 	public Board()
 	{
 		this.board = new int[this.DEFAULT_LENGTH][this.DEFAULT_LONG];
-		for (int i = 0; i < 8; i++)
+		for (int i = 0; i < this.DEFAULT_LENGTH; i++)
 		{
-			for (int j = 0; j < 8; j++)
+			for (int j = 0; j < this.DEFAULT_LENGTH; j++)
 			{
 				this.board[i][j] = 0;
 			}
@@ -44,9 +44,9 @@ public class Board
 	 */
 	public boolean IsEmpty()
 	{
-		for (int i = 0; i < 8; i++)
+		for (int i = 0; i < this.DEFAULT_LENGTH; i++)
 		{
-			for (int j = 0; j < 8; j++)
+			for (int j = 0; j < this.DEFAULT_LENGTH; j++)
 			{
 				if(this.board[i][j] == 0)
 					return true;
@@ -68,21 +68,20 @@ public class Board
 	
 	/**
 	 * check if a pawn can be framed by opponents pawns
-	 * @param p : a pawn
-	 * @param player 
-	 * @param i 
-	 * @param j 
+	 * @param player : current player
+	 * @param i : horizontal coordinate
+	 * @param j : vertical coordinate
 	 * @return true if it can be framed and else false
 	 */
-	public boolean pawnCanFramed(int[][] p, Player player, int i, int j)
+	public boolean pawnCanFramed(Player player, int i, int j)
 	{
 		int k=0;
 		int x=i;
 		int y=j;
 		int team=player.getTeam();
-		int t2=team;
+		int t2=0;
 		
-		while(x<8 && t2!=team)
+		while(x<this.DEFAULT_LENGTH && t2!=team)
 		{
 			x++;
 			t2 = this.board[x][j];
@@ -111,7 +110,7 @@ public class Board
 		}
 		
 		t2=team;
-		while(y<8 && t2!=team)
+		while(y<this.DEFAULT_LENGTH && t2!=team)
 		{
 			y++;
 			t2 = this.board[i][y];
@@ -142,7 +141,7 @@ public class Board
 		x=i;
 		y=j;
 		t2=team;
-		while(x<8 && y<8 && t2!=team)
+		while(x<this.DEFAULT_LENGTH && y<this.DEFAULT_LENGTH && t2!=team)
 		{
 			x++;
 			y++;
@@ -174,7 +173,7 @@ public class Board
 		x=i;
 		y=j;
 		t2=team;
-		while(x>=0 && y<8 && t2!=team)
+		while(x>=0 && y<this.DEFAULT_LENGTH && t2!=team)
 		{
 			x--;
 			y++;
@@ -190,7 +189,7 @@ public class Board
 		x=i;
 		y=j;
 		t2=team;
-		while(x<8 && y>=0 && t2!=team)
+		while(x<this.DEFAULT_LENGTH && y>=0 && t2!=team)
 		{
 			x++;
 			y--;
@@ -228,17 +227,17 @@ public class Board
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Who is the winner
+	 * @return the winner
 	 */
 	public int TheWinnerIs()
 	{
 		int nb1 = 0;
 		int nb2 = 0;
 		int results = 0;
-		for (int i = 0; i < 8; i++)
+		for (int i = 0; i < this.DEFAULT_LENGTH; i++)
 		{
-			for (int j = 0; j < 8; j++)
+			for (int j = 0; j < this.DEFAULT_LENGTH; j++)
 			{
 				if(this.board[i][j] == 1)
 					nb1++ ;
@@ -258,30 +257,170 @@ public class Board
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * get the board
+	 * @return the board
 	 */
 	public int[][] getBoard()
 	{
 		return this.board;
 	}
+	
 	/**
-	 * @return the dEFAULT_LENGTH
+	 * Change the color of every opponent pawn who are framed
+	 * @param player : current player
+	 * @param i : horizontal coordinate
+	 * @param j : vertical coordinate
 	 */
-	public int getDEFAULT_LENGTH()
+	public void ChangeColor(Player player, int i, int j)
 	{
-		return this.DEFAULT_LENGTH;
+		int x=i;
+		int y=j;
+		int team=player.getTeam();
+		int t2=0;
+		
+		while(x<this.DEFAULT_LENGTH && t2!=team)
+		{
+			x++;
+			t2 = this.board[x][j];
+		}
+		if(t2 == team)
+		{
+			x=i;
+			while(t2!=team)
+			{
+				x++;
+				this.board[x][j] = team;
+			}
+		}
+		x=i;
+		t2 = 0;
+		while(y<this.DEFAULT_LENGTH && t2!=team)
+		{
+			y++;
+			t2 = this.board[i][y];
+		}
+		if(t2 == team)
+		{
+			y=j;
+			while(t2!=team)
+			{
+				y++;
+				this.board[i][y] = team;
+			}
+		}
+		
+		y=j;
+		t2 = 0;
+		while(x>=0 && t2!=team)
+		{
+			x--;
+			t2 = this.board[x][j];
+		}
+		if(t2 == team)
+		{
+			x=i;
+			while(t2!=team)
+			{
+				x--;
+				this.board[x][j] = team;
+			}
+		}
+		x=i;
+		t2 = 0;
+		while(y>=0 && t2!=team)
+		{
+			y--;
+			t2 = this.board[i][y];
+		}
+		if(t2 == team)
+		{
+			y=j;
+			while(t2!=team)
+			{
+				y--;
+				this.board[i][y] = team;
+			}
+		}
+		
+		
+		
+		while(x<this.DEFAULT_LENGTH && y<this.DEFAULT_LENGTH && t2!=team)
+		{
+			x++;
+			y++;
+			t2 = this.board[x][j];
+		}
+		if(t2 == team)
+		{
+			x=i;
+			y=j;
+			while(t2!=team)
+			{
+				x++;
+				y++;
+				this.board[x][j] = team;
+			}
+		}
+		x=i;
+		y=j;
+		t2 = 0;
+		while(y>=0 && x>=0 && t2!=team)
+		{
+			x--;
+			y--;
+			t2 = this.board[x][y];
+		}
+		if(t2 == team)
+		{
+			x=i;
+			y=j;
+			while(t2!=team)
+			{
+				x--;
+				y--;
+				this.board[x][y] = team;
+			}
+		}
+		
+		x=i;
+		y=j;
+		t2 = 0;
+		while(x>=0 && y<this.DEFAULT_LENGTH && t2!=team)
+		{
+			y++;
+			x--;
+			t2 = this.board[x][y];
+		}
+		if(t2 == team)
+		{
+			x=i;
+			y=j;
+			while(t2!=team)
+			{
+				y++;
+				x--;
+				this.board[x][y] = team;
+			}
+		}
+		y=j;
+		x=i;
+		t2 = 0;
+		while(y>=0 && x<this.DEFAULT_LENGTH && t2!=team)
+		{
+			x++;
+			y--;
+			t2 = this.board[x][y];
+		}
+		if(t2 == team)
+		{
+			x=i;
+			y=j;
+			while(t2!=team)
+			{
+				x++;
+				y--;
+				this.board[x][y] = team;
+			}
+		}
 	}
-	/**
-	 * @return the dEFAULT_LONG
-	 */
-	public int getDEFAULT_LONG()
-	{
-		return this.DEFAULT_LONG;
-	}
-	
-	
-	
-
-
 }

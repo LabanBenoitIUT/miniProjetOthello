@@ -34,9 +34,15 @@ public class OthelloGame
 	public void ChangeCurrentPlayer()
 	{
 		if(this.currentPlayer == this.player1)
+		{
+			this.player1 = this.currentPlayer;
 			this.currentPlayer = this.player2;
+		}
 		else
+		{
+			this.player2 = this.currentPlayer;
 			this.currentPlayer = this.player1;
+		}
 	}
 
 	/**
@@ -64,7 +70,7 @@ public class OthelloGame
 		{
 			for (int j = 0; j < 8; j++)
 			{
-				if(this.board.pawnCanFramed(this.board.getBoard(), player, i, j))
+				if(this.board.pawnCanFramed(player, i, j))
 					return true;
 			}
 		}
@@ -81,19 +87,7 @@ public class OthelloGame
 	{
 		this.board = new Board();
 		this.player1 = new Player(nameP1, 1);
-		/*this.player1.wherePlay[0] = new Coordinate(4,2);
-		this.player1.wherePlay[1] = new Coordinate(5,3);
-		this.player1.wherePlay[2] = new Coordinate(3,5);
-		this.player1.wherePlay[3] = new Coordinate(2,4);
-		this.player1.HisPawn[0] = new Coordinate(3,3);
-		this.player1.HisPawn[1] = new Coordinate(4,4);*/
 		this.player2 = new Player(nameP2, 2);
-		/*this.player2.wherePlay[0] = new Coordinate(2,3);
-		this.player2.wherePlay[1] = new Coordinate(3,2);
-		this.player2.wherePlay[2] = new Coordinate(4,5);
-		this.player2.wherePlay[3] = new Coordinate(5,4);
-		this.player2.HisPawn[0] = new Coordinate(3,4);
-		this.player2.HisPawn[1] = new Coordinate(4,3);*/
 	}
 
 	/**
@@ -111,29 +105,39 @@ public class OthelloGame
 	 *   current player changes
 	 *  current player changes
 	 * game over
-	 * @throws CoordinateIsntInTheBoardException 
 	 */
-	public void play() throws CoordinateIsntInTheBoardException
+	public void play() 
 	{
 		this.currentPlayer = this.player1;
 		while(gameIsNotOver())
 		{
 			while(CanPlay(this.currentPlayer))
 			{
-				Coordinate c = this.currentPlayer.askWherePlay();
-				while(this.board.locationIsRight(c, this.currentPlayer)  == false)
+				Coordinate c = null;
+				try
 				{
 					c = this.currentPlayer.askWherePlay();
 				}
+				catch (CoordinateIsntInTheBoardException e)
+				{
+					System.out.println("la coordonnée n'est pas valide");
+				}
+				while(this.board.locationIsRight(c, this.currentPlayer)  == false)
+				{
+					try
+					{
+						c = this.currentPlayer.askWherePlay();
+					}
+					catch (CoordinateIsntInTheBoardException e)
+					{
+						System.out.println("la coordonnée n'est pas valide");
+					}
+				}
 				this.board.getBoard()[c.getX()][c.getY()] = this.currentPlayer.getTeam();
-				/*change color*/
+				this.board.ChangeColor(this.currentPlayer, c.getX(), c.getY());
 				ChangeCurrentPlayer();			}
 			ChangeCurrentPlayer();
 		}
 		this.board.TheWinnerIs();
-	}
-
-	
-
-	
+	}	
 }

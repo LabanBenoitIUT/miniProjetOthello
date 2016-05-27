@@ -65,6 +65,7 @@ public class Player
 		String abs = sc.nextLine();
 		System.out.println("Veuillez saisir une ordonnée où jouer:");
 		String ord = sc.nextLine();
+		sc.close();
 		int x = Integer.parseInt(abs);
 		int y = Integer.parseInt(ord);
 		return new Coordinate(x, y);
